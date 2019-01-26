@@ -1,0 +1,38 @@
+server:
+  port: ${port:8072} #服务端口
+spring:
+  application:
+    name: testSearch #指定服务名
+  profiles:
+    active: production
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+hikari:
+  master:
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/test1?characterEncoding=utf-8&allowMultiQueries=true&useAffectedRows=true
+    username: root
+    password: root
+    minimum-idle: 10
+    maximum-pool-size: 15
+    connection-test-query: SELECT 1
+  slave1:
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/test2?characterEncoding=utf-8&allowMultiQueries=true&useAffectedRows=true
+    username: root
+    password: root
+    minimum-idle: 10
+    maximum-pool-size: 15
+    connection-test-query: SELECT 1
+  slave2:
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/test3?characterEncoding=utf-8&allowMultiQueries=true&useAffectedRows=true
+    username: root
+    password: root
+    minimum-idle: 10
+    maximum-pool-size: 15
+    connection-test-query: SELECT 1
+
+
