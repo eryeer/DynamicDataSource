@@ -1,6 +1,5 @@
 package com.wxbc.datasource;
 
-import com.sun.media.jfxmedia.logging.Logger;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.datasource.DataSourceException;
@@ -62,22 +61,6 @@ public class DataSourceConfiguration {
         dataSource.setConnectionTestQuery(prop.getConnectionTestQuery());
         return dataSource;
     }
-/*
-    @Bean(name = "dynamicDataSource")
-    @Primary
-    public DataSource setDynamicDataSource(@Qualifier("masterDataSource") DataSource masterDataSource,
-                                           @Qualifier("slave1DataSource") DataSource slave1DataSource,
-                                           @Qualifier("slave2DataSource") DataSource slave2DataSource) {
-        DynamicDataSource dynamicDataSource = new DynamicDataSource();
-        Map<Object, Object> dataSourceMap = new HashMap<>();
-        dataSourceMap.put(DynamicDataSourceHolder.MASTER, masterDataSource);
-        dataSourceMap.put(DynamicDataSourceHolder.SLAVE + "-1", slave1DataSource);
-        dataSourceMap.put(DynamicDataSourceHolder.SLAVE + "-2", slave2DataSource);
-        dynamicDataSource.setTargetDataSources(dataSourceMap);
-        dynamicDataSource.setDefaultTargetDataSource(masterDataSource);
-        return dynamicDataSource;
-    }
-*/
 
     @Bean
     public DataSourceTransactionManager transactionManager(@Qualifier("dynamicDataSource") DataSource dataSource) throws Exception {
