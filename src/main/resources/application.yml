@@ -18,21 +18,20 @@ hikari:
     minimum-idle: 10
     maximum-pool-size: 15
     connection-test-query: SELECT 1
-  slave1:
-    driver-class-name: com.mysql.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/test2?characterEncoding=utf-8&allowMultiQueries=true&useAffectedRows=true
-    username: root
-    password: root
-    minimum-idle: 10
-    maximum-pool-size: 15
-    connection-test-query: SELECT 1
-  slave2:
-    driver-class-name: com.mysql.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/test3?characterEncoding=utf-8&allowMultiQueries=true&useAffectedRows=true
-    username: root
-    password: root
-    minimum-idle: 10
-    maximum-pool-size: 15
-    connection-test-query: SELECT 1
-
-
+  slaves:
+    slave1:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test2?characterEncoding=utf-8&allowMultiQueries=true&useAffectedRows=true
+      username: root
+      password: root
+      minimum-idle: 10
+      maximum-pool-size: 15
+      connection-test-query: SELECT 1
+    slave2:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test3?characterEncoding=utf-8&allowMultiQueries=true&useAffectedRows=true
+      username: root
+      password: root
+      minimum-idle: 10
+      maximum-pool-size: 15
+      connection-test-query: SELECT 1

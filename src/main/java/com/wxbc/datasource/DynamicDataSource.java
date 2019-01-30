@@ -20,7 +20,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
     private Integer slaveCount;
 
-    // 轮询计数,初始为-1,AtomicInteger是线程安全的
+    // 轮询计数,初始为-1
     private AtomicInteger counter = new AtomicInteger(-1);
 
     // 记录读库的key
@@ -34,10 +34,14 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
             log.debug("当前DataSource的key为: " + key);
             return key;
         }
-        Object key = getSlaveKey();
-        log.debug("当前DataSource的key为: " + key);
-        return key;
+        if (this.slaveCount > 0) {
+            Object key = getSlaveKey();
+            log.debug("当前DataSource的key为: " + key);
+            return key;
+        }else{
+            return DynamicDataSourceHolder.MASTER;
 
+        }
     }
 
     @SuppressWarnings("unchecked")
