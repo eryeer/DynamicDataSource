@@ -29,10 +29,10 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
         // 使用DynamicDataSourceHolder保证线程安全，并且得到当前线程中的数据源key
-        if (DynamicDataSourceHolder.isMaster()) {
+        if (DynamicDataSourceHolder.isMaster() || DynamicDataSourceHolder.getDataSourceKey() == null) {
             Object key = DynamicDataSourceHolder.getDataSourceKey();
             log.debug("当前DataSource的key为: " + key);
-            return key;
+            return DynamicDataSourceHolder.MASTER;
         }
         if (this.slaveCount > 0) {
             Object key = getSlaveKey();
